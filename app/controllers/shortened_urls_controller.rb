@@ -32,8 +32,9 @@ class ShortenedUrlsController < ApplicationController
   
   # PART TWO
   def redirect_to_original_link
+    shortened_url = ShortenedUrl.find_by_short_url(params[:short_url])
     
-    # also update that row's visit_count += 1
+    redirect_to shortened_url.long_url
   end
   
   private

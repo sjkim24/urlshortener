@@ -37,5 +37,13 @@ now someone clicks on lala.com/l2faS2r
     2. asks rails server, which what is the original link of lala.com/l2faS2r?
     3. rails will check database and grab row with shortened_url
     4. redirect user to the original_url of that row
-    
+
 let's work on the backend first then frontend
+
+things to think about after initial frontend
+"shortest possible url"
+how do you define shortest possible url?
+ - seems like i have to find a balance between short_url length and its uniqueness
+ - a performance cost i have to think about is:
+ 	how does length of the short_url affects the number of times my ShortenedUrl.random_code has to run to generate a unique short_url as my database grow?
+

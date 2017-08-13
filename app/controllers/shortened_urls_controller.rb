@@ -2,7 +2,7 @@ class ShortenedUrlsController < ApplicationController
   
   # display top 100 visited links
   def index
-    @shortened_urls = ShortenedUrl.all
+    @shortened_urls = ShortenedUrl.order("visit_count DESC").last(100)
   end
   
   # process original url into a shortened url
@@ -33,6 +33,8 @@ class ShortenedUrlsController < ApplicationController
   # PART TWO
   def redirect_to_original_link
     shortened_url = ShortenedUrl.find_by_short_url(params[:short_url])
+    prev_visit_count = shortened_url.visit_count
+    shortened_url.update_attribute("visit_count", prev_visit_count + 1)
     
     redirect_to shortened_url.long_url
   end

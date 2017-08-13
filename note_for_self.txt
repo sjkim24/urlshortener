@@ -1,0 +1,41 @@
+steps for readme
+
+requirements, need postgres
+
+1. run bundle exec rails db:create
+
+
+urlshortener
+
+the goal is to create a redirect center
+for example:
+
+my app processed url, www.youtube.com, as somedomain.com/#{unique random generated string}
+for our example, let’s say this is lala.com/l2faS2r
+and stores in URLS table
+
+URLS
+——————
+id
+——————
+
+original_url (
+	- a decision i’m going to have to make it whether to enforce unique original_url
+		1. IF I DO ENFORCE uniqueness of original_url, the original data will be saved until expiration date 		and the shorten link will be recycled until then
+		2. IF I DO NOT ENFORCE uniqueness of original_url, i will have a lot of instance of URLS with the 		same original_url but different shortened_url
+
+		LET’S GO WITH 1 FOR NOW
+———————
+shortened_url (has to be unique)
+click_count (default 0)
+
+features
+1. process a url into a shortened link and return shortened link
+2. when someone access a shortened link, redirect the user to the original url
+now someone clicks on lala.com/l2faS2r
+    1. it will hit my rails server
+    2. asks rails server, which what is the original link of lala.com/l2faS2r?
+    3. rails will check database and grab row with shortened_url
+    4. redirect user to the original_url of that row
+    
+let's work on the backend first then frontend

@@ -7,8 +7,15 @@ class ShortenedUrlsController < ApplicationController
   
   # process original url into a shortened url
   def create
-    short_url = ShortenedUrl.random_code
     @shortened_url = ShortenedUrl.new(shortened_urls_params)
+    
+    if Rails.env === "development"
+      short_url = "#{request.domain}:#{request.port}/#{ShortenedUrl.random_code}"
+    else
+      short_url = "#{request.domain}/#{ShortenedUrl.random_code}"
+    end
+    
+    binding.pryd
     @shortened_url[:short_url] = short_url
     
     if @shortened_url.save
@@ -32,7 +39,12 @@ class ShortenedUrlsController < ApplicationController
   
   # PART TWO
   def redirect_to_original_link
-    shortened_url = ShortenedUrl.find_by_short_url(params[:short_url])
+    if Rails.env === "development"
+      shortened_url = ShortenedUrl.find_by_short_url("#{request.domain}:#{request.port}/#{params[:short_url]}")
+    else
+      shortened_url = ShortenedUrl.find_by_short_url("#{request.domain}/#{params[:short_url]}")
+    end
+    
     prev_visit_count = shortened_url.visit_count
     shortened_url.update_attribute("visit_count", prev_visit_count + 1)
     

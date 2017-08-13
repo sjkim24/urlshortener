@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-   resources :users, only: [:index, :create, :show]
+  root to: "shortened_urls#index"
+  resources :shortened_urls, only: [:index, :create, :show, :new]
    
-   # need to set up route for 
-   # ShortenedUrlsController#redirect_to_original_link
+ # need to set up route for 
+ # ShortenedUrlsController#redirect_to_original_link
 end

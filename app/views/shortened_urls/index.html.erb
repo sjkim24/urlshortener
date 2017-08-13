@@ -1,0 +1,13 @@
+<div>ALL URLS</div>
+<ul>
+  <% @shortened_urls.each do |shortened_url| %>
+    <li>
+      <div>
+        long url: <a href="<%= shortened_url.long_url %>"><%= shortened_url.long_url %>
+      </div>
+      <div>
+        short url: <a href="<%= shortened_url.short_url %>"><%= shortened_url.short_url %>
+      </div>
+    </li>
+  <% end %>
+</ul>

@@ -3,7 +3,7 @@ class CreateShortenedUrLs < ActiveRecord::Migration
     create_table :shortened_urls do |t|
       t.string :long_url, null: false
       t.string :short_url, null: false
-      t.integer :visit_count
+      t.integer :visit_count, default: 0
     end
     
     add_index :shortened_urls, :short_url, unique: true

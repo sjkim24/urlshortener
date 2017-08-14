@@ -2,7 +2,7 @@
   "name": "urlshortener",
   "version": "1.0.0",
   "description": "== README",
-  "main": "index.js",
+  "main": "index.jsx",
   "engines": {
     "node": "4.1.1",
     "npm": "2.1.x"
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sjkim24/fable.git"
+    "url": "git+https://github.com/sjkim24/urlshortener.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sjkim24/fable/issues"
+    "url": "https://github.com/sjkim24/urlshortener/issues"
   },
-  "homepage": "https://github.com/sjkim24/fable#readme",
+  "homepage": "https://github.com/sjkim24/urlshortener#readme",
   "dependencies": {
     "axios": "^0.15.3",
     "babel-core": "^6.23.1",
@@ -34,7 +34,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
-    "react-router": "^3.0.2",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.1.2",
     "redux": "^3.6.0",
     "redux-devtools-extension": "^2.13.0",
     "redux-promise": "^0.5.3",

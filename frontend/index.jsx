@@ -2,8 +2,6 @@ import React from "react";
 import ReactDOM from 'react-dom';
 
 document.addEventListener("DOMContentLoaded", () => {  
-  ReactDOM.render(
-    <div>Hello World</div>, 
-    document.querySelector("#main")
-  );
+  const el = <div>Hello World</div>;
+  ReactDOM.render(el, document.querySelector("#main"));
 });

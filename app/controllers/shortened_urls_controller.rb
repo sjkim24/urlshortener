@@ -15,7 +15,6 @@ class ShortenedUrlsController < ApplicationController
       short_url = "#{request.domain}/#{ShortenedUrl.random_code}"
     end
     
-    binding.pryd
     @shortened_url[:short_url] = short_url
     
     if @shortened_url.save

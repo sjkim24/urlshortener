@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import UrlForm from "./url_form.jsx";
+import { setAuthToken } from "../actions/action_auth";
 
 class App extends Component {
   render() {
@@ -10,6 +13,19 @@ class App extends Component {
       </div>
     );
   }
+  
+  componentDidMount() {
+    const token = $('meta[name=csrf-token]').attr('content');
+    this.props.setAuthToken(token);
+  }
 };
 
-export default App;
+function mapStateToProps(state) {
+  return { authToken: state.auth.authToken };
+};
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setAuthToken }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

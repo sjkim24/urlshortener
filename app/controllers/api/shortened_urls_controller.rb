@@ -1,4 +1,4 @@
-class ShortenedUrlsController < ApplicationController
+class Api::ShortenedUrlsController < ApplicationController
   
   # display top 100 visited links
   def index
@@ -18,9 +18,11 @@ class ShortenedUrlsController < ApplicationController
     @shortened_url[:short_url] = short_url
     
     if @shortened_url.save
-      redirect_to shortened_url_url(@shortened_url)
+      render json: { shortUrl: @shortened_url[:short_url] }
     else
-      render :new
+      # render some kind of error
+      # but handle the error in front end
+      render json: { error: true }
     end
   end
   

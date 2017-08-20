@@ -8,43 +8,18 @@ class Api::ShortenedUrlsController < ApplicationController
   # process original url into a shortened url
   def create
     @shortened_url = ShortenedUrl.new(shortened_urls_params)
-    
-    if Rails.env === "development"
-      short_url = "#{request.domain}:#{request.port}/#{ShortenedUrl.random_code}"
-    else
-      short_url = "#{request.domain}/#{ShortenedUrl.random_code}"
-    end
-    
+    short_url = ShortenedUrl.random_code
     @shortened_url[:short_url] = short_url
     
     if @shortened_url.save
-      render json: { shortUrl: @shortened_url[:short_url] }
+      render json: { shortUrl: @shortened_url[:short_url], success: true }
     else
-      # render some kind of error
-      # but handle the error in front end
       render json: { error: true }
     end
   end
-  
-  # for now, i will redirect user to show action after create to simply
-  # show them the shortened url but i prob don't even have to since i 
-  # will be using react for front end
-  def show
-    @shortened_url = ShortenedUrl.find(params[:id])
-  end
-  
-  def new
-    @shortened_url = ShortenedUrl.new
-  end
-  # for now, do everything above
-  
-  # PART TWO
+
   def redirect_to_original_link
-    if Rails.env === "development"
-      shortened_url = ShortenedUrl.find_by_short_url("#{request.domain}:#{request.port}/#{params[:short_url]}")
-    else
-      shortened_url = ShortenedUrl.find_by_short_url("#{request.domain}/#{params[:short_url]}")
-    end
+    shortened_url = ShortenedUrl.find_by_short_url(params[:short_url])
     
     prev_visit_count = shortened_url.visit_count
     shortened_url.update_attribute("visit_count", prev_visit_count + 1)

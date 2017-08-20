@@ -19,6 +19,11 @@ class UrlForm extends Component {
     const that = this;
     this.props.processUrl(this.state.longUrl, this.props.authToken)
       .then((response) => {
+        if (response.success) {
+          
+        } else {
+          console.log("error");
+        }
         // if success
         // render the short link 
         console.log(that.props.shortUrl);

@@ -9,14 +9,20 @@ class Api::ShortenedUrlsController < ApplicationController
   
   # process original url into a shortened url
   def create
-    @shortened_url = ShortenedUrl.new(shortened_urls_params)
-    short_url = ShortenedUrl.random_code
-    @shortened_url[:short_url] = short_url
+    url = ShortenedUrl.find_by_long_url(shortened_urls_params[:long_url])
     
-    if @shortened_url.save
-      render json: { shortUrl: @shortened_url[:short_url], success: true }
+    if url
+      render json: {shortUrl: url[:short_url]}
     else
-      render json: { error: true }
+      shortened_url = ShortenedUrl.new(shortened_urls_params)
+      short_url = ShortenedUrl.random_code
+      shortened_url[:short_url] = short_url
+      
+      if shortened_url.save
+        render json: { shortUrl: shortened_url[:short_url], success: true }
+      else
+        render json: { error: true }
+      end
     end
   end
 

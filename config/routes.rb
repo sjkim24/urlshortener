@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     resources :shortened_urls, only: [:create, :index]
   end
   
-  get "/api/:short_url", to: "api/shortened_urls#redirect_to_original_link"
+  get "/:short_url", to: "api/shortened_urls#redirect_to_original_link"
 end

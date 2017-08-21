@@ -19,7 +19,7 @@ class TopHundred extends Component {
           </div>
           <div className="top-hundred-list-item-short">
             Short URL
-            <a href={url.shortUrl} className="top-hundred-url">{url.shortUrl}</a>
+            <a href={url.shortUrl} className="top-hundred-url">{`${window.location.host}/${url.shortUrl}`}</a>
           </div>
           <div className="top-hundred-list-item-visit-count">Visit Count: {url.visitCount}</div>
         </li>

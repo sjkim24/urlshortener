@@ -28,7 +28,7 @@ class ShortUrl extends Component {
     return (
       <div className={`${display} group`}>
         <textarea readOnly className="short-url-shortened-url"
-          value=  {`${window.location.host}/${this.props.shortUrl}`} />
+          value={`${window.location.host}/${this.props.shortUrl}`} />
         <div className="button short-url-button" onClick={this.copyShortUrl}>
           COPY
         </div>

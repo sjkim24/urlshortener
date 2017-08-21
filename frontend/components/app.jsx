@@ -3,15 +3,41 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import UrlForm from "./url_form.jsx";
 import ShortUrl from "./short_url.jsx";
+import TopHundred from "./top_hundred.jsx";
 import { setAuthToken } from "../actions/action_auth";
 
 class App extends Component {
+  constructor() {
+    super();
+    
+    this.state = { displayTopHundred: false };
+    this.displayTopHundred = this.displayTopHundred.bind(this);
+  }
+  
+  displayTopHundred() {
+    this.setState({ displayTopHundred: true });
+  }
+  
+  displayButtonOrTopHundred() {
+    if (this.state.displayTopHundred) {
+      return (
+        <TopHundred />
+      );
+    } else {
+      return (
+        <div onClick={this.displayTopHundred} className="button">
+          VIEW TOP 100 VISITED LINKS
+        </div>
+      );
+    }
+  }
+  
   render() {
     return (
-      <div>
-        Hello, welcome to SJ's URL shortener!
+      <div className="app">
         <UrlForm />
         <ShortUrl />
+        <TopHundred />
       </div>
     );
   }

@@ -1,6 +1,0 @@
-<form class="" action="<%= shortened_urls_url %>" method="post">
-  Enter your long url. I will shortened it for you!
-  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-  <input type="text" name="shortened_url[long_url]" value="<%= @shortened_url.long_url %>">
-  <input type="submit" value="Submit">
-</form>

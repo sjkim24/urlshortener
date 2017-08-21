@@ -1,0 +1,31 @@
+.top-hundred {
+  color: $pink;
+  margin-top: 25px;
+}
+
+.top-hundred-header {
+  margin-bottom: 15px;
+}
+
+.top-hundred-list-item {
+  background: #dfdfdf;
+  margin-bottom: 5px;
+  padding: 20px;
+}
+
+.top-hundred-list-item-long, 
+.top-hundred-list-item-short,
+.top-hundred-list-item-visit-count {
+  margin-bottom: 10px;
+}
+
+.top-hundred-list-item-visit-count {
+  color: $turquoise;
+}
+
+.top-hundred-url {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

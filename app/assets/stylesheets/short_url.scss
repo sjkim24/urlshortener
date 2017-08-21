@@ -1,0 +1,21 @@
+.short-url {
+  margin-top: 20px;
+}
+
+.short-url-shortened-url {
+  background: $light-gray;
+  border-left: 3px solid $turquoise;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  height: 30px;
+  font-size: 14px;
+  padding: 8px 3px 3px 3px;
+  resize: none;
+  width: 70%;
+}
+
+.short-url-button {
+  height: 22px;
+  padding-top: 8px;
+}

@@ -1,3 +1,22 @@
-.url-form {
-  border: 1px solid black;
+.url-form-inst {
+  color: $pink;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.url-form-input {
+  background: $light-gray;
+  border-left: 3px solid $turquoise;
+  box-sizing: border-box;
+  height: 30px;
+  font-size: 14px;
+  padding: 3px;
+  width: 70%;
+}
+
+@media (min-width: 768px) {
+  .url-form-input,
+  .short-url-shortened-url {
+    font-size: 18px;
+  }
 }

@@ -3,6 +3,8 @@ class Api::ShortenedUrlsController < ApplicationController
   # display top 100 visited links
   def index
     @shortened_urls = ShortenedUrl.order("visit_count DESC").last(100)
+    
+    render :index
   end
   
   # process original url into a shortened url

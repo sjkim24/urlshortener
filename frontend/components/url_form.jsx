@@ -14,20 +14,14 @@ class UrlForm extends Component {
   
   handleOnSubmit(event) {
     event.preventDefault();
-    // i should do a validation to make sure it's a proper url
-    // send rails the long url for processing
+  
     const that = this;
     this.props.processUrl(this.state.longUrl, this.props.authToken)
       .then((response) => {
-        if (response.success) {
-          
+        if (response.payload.data.success) {
         } else {
           console.log("error");
         }
-        // if success
-        // render the short link 
-        console.log(that.props.shortUrl);
-        // if not, render some kind of error
       });
   }
   
@@ -38,12 +32,18 @@ class UrlForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleOnSubmit} className="url-form">
-        <input 
-          onChange={this.handleOnChange} 
-          className="url-form-input" 
-          placeholder="Your URL" 
-          value={this.state.longUrl }/>
-        <input className="button" type="submit" value="Go" />
+        <div className="url-form-inst">
+          ENTER YOUR LONG LINK
+        </div>
+        <div className="url-form-input-button">
+          <input 
+            onChange={this.handleOnChange} 
+            className="url-form-input" 
+            placeholder="Your URL" 
+            value={this.state.longUrl } 
+            type="url" />
+          <input className="button" type="submit" value="Let's Get It!" />
+        </div>
       </form>
     )
   };

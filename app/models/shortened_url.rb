@@ -4,7 +4,7 @@ class ShortenedUrl < ActiveRecord::Base
   # generte random urlsafe string
   def self.random_code
     begin
-      random_code = SecureRandom.urlsafe_base64
+      random_code = SecureRandom.urlsafe_base64(4)
       raise "URL exists" if ShortenedUrl.exists?(short_url: random_code)
       
       random_code

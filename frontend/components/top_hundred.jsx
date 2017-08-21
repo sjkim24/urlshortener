@@ -30,10 +30,8 @@ class TopHundred extends Component {
   }
   
   render() {
-    console.log(this.props.topHundredUrls);
-    
     if (!this.props.topHundredUrls) {
-      return <div className="loader" />;
+      return <div className="loader">Loading...</div>;
     }
     
     return (

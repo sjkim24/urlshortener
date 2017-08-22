@@ -15,10 +15,11 @@ class Api::ShortenedUrlsController < ApplicationController
       render json: {shortUrl: url[:short_url]}
     else
       shortened_url = ShortenedUrl.new(shortened_urls_params)
-      short_url = ShortenedUrl.random_code
-      shortened_url[:short_url] = short_url
       
       if shortened_url.save
+        short_url = shortened_url.generate_short_url
+        shortened_url.update_attribute("short_url", short_url)
+        
         render json: { shortUrl: shortened_url[:short_url], success: true }
       else
         render json: { error: true }
@@ -27,11 +28,12 @@ class Api::ShortenedUrlsController < ApplicationController
   end
 
   def redirect_to_original_link
-    shortened_url = ShortenedUrl.find_by_short_url(params[:short_url])
+    digits = ShortenedUrl.convert_short_url_to_digits(params[:short_url])
+    id = ShortenedUrl.convert_base_62_digits_to_id(digits)
     
-    prev_visit_count = shortened_url.visit_count
-    shortened_url.update_attribute("visit_count", prev_visit_count + 1)
-    
+    shortened_url = ShortenedUrl.find(id)
+    shortened_url.update_attribute("visit_count", shortened_url.visit_count + 1)
+
     redirect_to shortened_url.long_url
   end
   

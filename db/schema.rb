@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813214213) do
+ActiveRecord::Schema.define(version: 20170821235421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "shortened_urls", force: :cascade do |t|
     t.string  "long_url",                null: false
-    t.string  "short_url",               null: false
+    t.string  "short_url"
     t.integer "visit_count", default: 0
   end
 

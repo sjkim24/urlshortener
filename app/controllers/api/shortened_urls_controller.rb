@@ -28,7 +28,7 @@ class Api::ShortenedUrlsController < ApplicationController
   end
 
   def redirect_to_original_link
-    digits = ShortenedUrl.convert_short_url_to_digits(params[:short_url])
+    digits = ShortenedUrl.convert_short_url_to_digits(params[:short_url]).map { |digit| digit + 1}
     id = ShortenedUrl.convert_base_62_digits_to_id(digits)
     
     shortened_url = ShortenedUrl.find(id)

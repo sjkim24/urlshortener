@@ -33,7 +33,7 @@ class ShortenedUrl < ActiveRecord::Base
     digits = []
 
     while num > 0
-      remainder = num % 62
+      remainder = (num - 1) % 62
       digits << remainder
       num = num / 62
     end

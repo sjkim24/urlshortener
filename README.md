@@ -1,7 +1,5 @@
 # UrlShortener
 
-[Live][live]
-
 ## Requirements
 [Install Postgresql][pgsql]
 
@@ -16,5 +14,4 @@
 8. run `rails s` in another tab
 9. open a web browser and browse to localhost:3000
 
-[live]: https://thawing-refuge-97853.herokuapp.com/
 [pgsql]: https://www.postgresql.org/
